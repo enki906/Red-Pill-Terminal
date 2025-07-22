@@ -1,0 +1,23 @@
+{
+     "name": "red-pill-terminal",
+     "version": "0.1.0",
+     "description": "Psychological Horror Edutainment Terminal Experience",
+     "main": "src/frontend/main.js",
+     "scripts": {
+          "start": "electron .",
+          "test": "echo \"Error: no test specified\" && exit 1"
+     },
+     "keywords": [
+          "Red-Pill",
+          "Terminal",
+          "Horror",
+          "Edutainment"
+     ],
+     "author": "enki906",
+     "license": "MIT",
+     "dependencies": {
+          "@xterm/addon-fit": "^0.10.0",
+          "@xterm/xterm": "^5.5.0",
+          "electron": "^37.2.3"
+     }
+}

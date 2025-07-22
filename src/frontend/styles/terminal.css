@@ -1,0 +1,118 @@
+body {
+  background: #050106;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  user-select: none;
+}
+
+#portal-shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at 60% 80%, #1a0006 60%, #050106 100%);
+  border-radius: 2vw;
+  overflow: hidden;
+  box-shadow:
+    0 0 72px 18px #ee3551aa,
+    0 0 160px 60px #c90b2e33,
+    0 0 14px 12px #45000066,
+    0 0 0 13px #740818cc inset;
+  border: 4px solid #fe334733;
+  animation: portalRedPulse 5s infinite alternate cubic-bezier(.65,0,.29,1);
+  min-width: 800px;
+  min-height: 480px;
+}
+
+@keyframes portalRedPulse {
+  from {
+    box-shadow:
+      0 0 48px 12px #e72030bb,
+      0 0 80px 22px #c90b2e66,
+      0 0 0px 0px #0b000a00,
+      0 0 0 8px #740818cc inset;
+    border-color: #fe334744;
+  }
+  to {
+    box-shadow:
+      0 0 130px 38px #f73e4df0,
+      0 0 280px 80px #ff387766,
+      0 0 30px 24px #bf0a2a55,
+      0 0 0 17px #af001099 inset;
+    border-color: #ff4959cc;
+  }
+}
+
+#crt-glow {
+  position: absolute; top:0; left:0;
+  width:100%; height:100%;
+  pointer-events: none;
+  z-index: 2;
+  box-shadow: 0 0 222px 60px #ff122c66,
+              0 0 88px 13px #ff222266 inset;
+  background: repeating-radial-gradient(circle at 60% 90%, rgba(255,36,54,0.09) 4%,rgba(0,0,0,0) 34%);
+  animation: crtGlow 6.5s infinite alternate cubic-bezier(0.7,0,0.3,1);
+  pointer-events: none;
+
+}
+
+@keyframes crtGlow {
+  0% { opacity: 0.56; }
+  100% { opacity: 0.86; }
+
+}
+
+#crt-scanlines {
+  position: absolute; left:0; top:0;
+  width:100%; height:100%;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.11;
+  background: repeating-linear-gradient(
+    to bottom,rgba(255,35,60,0.13) 0 1.5px,rgba(0,0,0,0) 2.5px
+  );
+}
+
+/* TERMINAL Schrift – extra fett, neonartig, blaugraues Shadow */
+#terminal {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  padding: 2vw 3vw 2vw 2vw;
+  box-sizing: border-box;
+  outline: none;
+  user-select: text;
+  cursor: text;
+}
+.xterm {
+  background: transparent !important;
+  font-size: 1.25em;
+}
+
+.xterm .xterm-rows span {
+  color: #ff3447 !important;
+  font-family: 'Fira Mono', 'JetBrains Mono', monospace;
+  font-weight: 900;
+  font-size: 1.19em;
+  letter-spacing: 0.055em;
+  text-shadow:
+    0 0 10px #64a4cb,
+    0 0 17px #2b4471cc,
+    0 0 2px #ffffff22;
+}
+
+.xterm .xterm-cursor-block {
+  background: linear-gradient(90deg,#ff3447 60%,#64a4cb 100%) !important;
+  box-shadow: 0 0 19px #ff3447cc, 0 0 20px #64a4cb99;
+  border-radius: 2.5px;
+  opacity: 0.95;
+}
+.xterm .xterm-selection {
+  background: #ff3a5736 !important;
+}
+.xterm .xterm-viewport {
+  background: transparent !important;
+}
