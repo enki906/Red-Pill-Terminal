@@ -4,7 +4,6 @@ const { FitAddon } = require('@xterm/addon-fit');
 const RED = '\x1b[38;2;255;52;71m';
 const BLUEGREY = '\x1b[38;2;96;130;185m';
 const RESET = '\x1b[0m';
-
 const PROMPT = `${BLUEGREY}Mindprisoner42@Red-Pill-Terminal${RESET}${RED} $:${RESET} `;
 
 let inputBuffer = '';
@@ -14,13 +13,13 @@ const terminal = new Terminal({
     background: '#050106',
     foreground: '#ff3447',
     cursor: '#ff3447',
-    selection: '#ff344755'
+    selection: '#ff344755',
   },
   fontFamily: 'Fira Mono, JetBrains Mono, monospace',
   fontWeightBold: 'bold',
   cursorBlink: true,
   cursorStyle: 'block',
-  rendererType: 'canvas'
+  rendererType: 'canvas',
 });
 
 const fitAddon = new FitAddon();
@@ -31,7 +30,7 @@ function showPrompt() {
 }
 
 function handleInput() {
-  terminal.onData(e => {
+  terminal.onData((e) => {
     switch (e) {
       case '\u0003': // Ctrl+C
         terminal.write('^C\r\n');
@@ -55,6 +54,7 @@ function handleInput() {
           inputBuffer += e;
           terminal.write(e);
         }
+        break;
     }
   });
 }
@@ -76,7 +76,7 @@ function handleCommand(cmd) {
       showPrompt();
       break;
     case 'ls':
-      terminal.writeln('the_white_rabbit mor7h3u5.enc r3d_p1ll.dat');
+      terminal.writeln('the_white_rabbit    mor7h3u5.enc    r3d_p1ll.dat');
       break;
     case 'cat the_white_rabbit':
       terminal.writeln('Follow the white rabbit...');
@@ -101,22 +101,40 @@ function randomGlitch() {
       '\u2592\u2593\u2588\u25A0', // ▒▓█■
       '\u2206\u03A9\u2248\u00A7\u00B6', // ∆Ω≈§¶
       '\u2E18\u21AF\u2630\u2622\u21D4', // ⸘↯☰☲⇔
-      '%#@*'
+      '%#@*',
     ];
     terminal.write(`\x1b[38;2;96;130;185m${garble[Math.floor(Math.random() * garble.length)]}${RESET}`);
-    terminal.write(`\r${PROMPT}${inputBuffer}`); // Prompt zurücksetzen
+    terminal.write(`\r${PROMPT}${inputBuffer}`);
   }
   setTimeout(randomGlitch, 2600 + Math.random() * 1500);
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   const terminalElem = document.getElementById('terminal');
+
+  terminalElem.style.height = '100vh';
+  terminalElem.style.width = '100vw';
+  terminalElem.style.overflow = 'hidden';
+
   terminal.open(terminalElem);
-  fitAddon.fit();
+  fitAddon.fit(); // wichtig!
+
   terminal.focus();
-  terminal.writeln(`${RED}SYSTEM FAILURE DETECTED...`);
-  terminal.writeln(`${BLUEGREY}EMERGENCY RED-PILL TERMINAL ONLINE...${RESET}`);
+  terminal.writeln(`${BLUEGREY}==============================================================================================================`);
+  terminal.writeln(`${BLUEGREY}============================================== RED-PILL TERMINAL =============================================`);
+  terminal.writeln(`${BLUEGREY}==============================================================================================================`);
   terminal.writeln('');
+  terminal.writeln(`${RED}                                     Welcome to the Red-Pill Terminal, Neo.`);
+  terminal.writeln(`${RED}                                      Type 'help' for available commands.`);
+  terminal.writeln('');
+  terminal.writeln(`${RED}======================================================================================================================`);
+  terminal.writeln(`${RED}======================================== WARNING: EMERGENCY USE ONLY ===================================================`);
+  terminal.writeln(`${RED}======================================================================================================================`);
+  terminal.writeln('')
+  terminal.writeln(`${RED}This terminal is a gateway to the real world. Use it wisely.`);
+  terminal.writeln(`${RED}Remember, reality is often stranger than fiction.`);
+  terminal.writeln('');
+
   showPrompt();
   handleInput();
   randomGlitch();
@@ -124,5 +142,4 @@ window.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('resize', () => {
   fitAddon.fit();
-  terminal.focus();
 });

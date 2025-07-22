@@ -1,3 +1,5 @@
+/* terminal.css */
+
 body {
   background: #050106;
   margin: 0;
@@ -21,7 +23,7 @@ body {
     0 0 14px 12px #45000066,
     0 0 0 13px #740818cc inset;
   border: 4px solid #fe334733;
-  animation: portalRedPulse 5s infinite alternate cubic-bezier(.65,0,.29,1);
+  animation: portalRedPulse 5s infinite alternate cubic-bezier(.65, 0, .29, 1);
   min-width: 800px;
   min-height: 480px;
 }
@@ -46,50 +48,70 @@ body {
 }
 
 #crt-glow {
-  position: absolute; top:0; left:0;
-  width:100%; height:100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 2;
-  box-shadow: 0 0 222px 60px #ff122c66,
-              0 0 88px 13px #ff222266 inset;
-  background: repeating-radial-gradient(circle at 60% 90%, rgba(255,36,54,0.09) 4%,rgba(0,0,0,0) 34%);
-  animation: crtGlow 6.5s infinite alternate cubic-bezier(0.7,0,0.3,1);
-  pointer-events: none;
-
+  box-shadow:
+    0 0 222px 60px #ff122c66,
+    0 0 88px 13px #ff222266 inset;
+  background: repeating-radial-gradient(circle at 60% 90%, rgba(255, 36, 54, 0.09) 4%, rgba(0, 0, 0, 0) 34%);
+  animation: crtGlow 6.5s infinite alternate cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 @keyframes crtGlow {
-  0% { opacity: 0.56; }
-  100% { opacity: 0.86; }
-
+  0% {
+    opacity: 0.56;
+  }
+  100% {
+    opacity: 0.86;
+  }
 }
 
 #crt-scanlines {
-  position: absolute; left:0; top:0;
-  width:100%; height:100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   z-index: 3;
   pointer-events: none;
   opacity: 0.11;
-  background: repeating-linear-gradient(
-    to bottom,rgba(255,35,60,0.13) 0 1.5px,rgba(0,0,0,0) 2.5px
-  );
+  background: repeating-linear-gradient(to bottom, rgba(255, 35, 60, 0.13) 0 1.5px, rgba(0, 0, 0, 0) 2.5px);
 }
 
-/* TERMINAL Schrift – extra fett, neonartig, blaugraues Shadow */
 #terminal {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  padding: 2vw 3vw 2vw 2vw;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
   box-sizing: border-box;
   outline: none;
+  margin: 0;
+  padding: 13px;
+  overflow: hidden;
+  z-index: 10;
   user-select: text;
   cursor: text;
 }
+
+/* XTERM SETTINGS */
 .xterm {
   background: transparent !important;
   font-size: 1.25em;
+  overflow: hidden;
+}
+
+.xterm .xterm-viewport {
+  background: transparent !important;
+  overflow: hidden;
+  scrollbar-width: none;
+}
+
+.xterm .xterm-viewport::-webkit-scrollbar {
+  display: none;
 }
 
 .xterm .xterm-rows span {
@@ -105,14 +127,12 @@ body {
 }
 
 .xterm .xterm-cursor-block {
-  background: linear-gradient(90deg,#ff3447 60%,#64a4cb 100%) !important;
+  background: linear-gradient(90deg, #ff3447 60%, #64a4cb 100%) !important;
   box-shadow: 0 0 19px #ff3447cc, 0 0 20px #64a4cb99;
   border-radius: 2.5px;
   opacity: 0.95;
 }
+
 .xterm .xterm-selection {
   background: #ff3a5736 !important;
-}
-.xterm .xterm-viewport {
-  background: transparent !important;
 }
